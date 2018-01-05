@@ -5,7 +5,7 @@
 #           update_weekly_run_file.py: update update_plt_data.pro for the given week                        #
 #           author: t. isobe (tisobe@cfa.harvard.edu)                                                       #
 #                                                                                                           #
-#           Last Update: Jan 15, 2016                                                                       #
+#           Last Update: Jan 05, 2018                                                                       #
 #                                                                                                           #
 #############################################################################################################
 
@@ -100,7 +100,7 @@ def update_weekly_run_file():
     if start < 1:
         syear = year -1
         base  = find_base(syear)
-        syday = 365 - start
+        syday = 365 + start
     else:
         syear = year
         syday = start
@@ -163,7 +163,8 @@ def update_weekly_run_file():
     data  = data.replace("#YEAR2#",  str(syear))
     data  = data.replace("#NYEAR#",  str(syear + 1))
 
-    ofile = o_dir + 'update_plt_data.pro'
+    #ofile = o_dir + 'update_plt_data.pro'
+    ofile = 'update_plt_data_test.pro'
     fo    = open(ofile, 'w')
     fo.write(data)
     fo.close()
@@ -197,7 +198,6 @@ def find_mon_day_from_ydate(year, yday):
             yday    --- yday
     output: [mon, day]  --- month and mday
     """
-
     tline = str(year) + ' ' +str(yday)
     tlist = time.strptime(tline, "%Y %j")
     mon   = tlist[1]
